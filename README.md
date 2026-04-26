@@ -1,29 +1,56 @@
 # ETL Data Pipeline (Python + PostgreSQL)
 
 ## 📖 Overview
-This project implements an end-to-end ETL pipeline that:
-- Extracts data from CSV
-- Transforms data using Pandas
-- Loads data into PostgreSQL
-- Generates aggregated insights
+This project implements an end-to-end ETL (Extract, Transform, Load) pipeline using Python and PostgreSQL.
+
+The pipeline ingests raw CSV data, performs data cleaning and transformation, and loads the processed data into a relational database for analytics.
+
+---
+
+## 🏗️ Architecture
+CSV File → Extract → Transform → PostgreSQL → Aggregation Table
+
+---
 
 ## ⚙️ Tech Stack
-- Python
-- Pandas
+- Python (Pandas)
 - PostgreSQL
 - SQLAlchemy
+- Logging (Python logging module)
 
-## 🔄 Pipeline Flow
-1. Extract: Read CSV data
-2. Transform:
-   - Data cleaning
-   - Column normalization
-   - Derived field (total_amount)
-3. Load:
-   - Insert into PostgreSQL
-   - Create aggregated table (daily_sales)
+---
+
+## 🔄 Pipeline Steps
+
+### 1. Extract
+- Reads raw data from CSV file
+- Handles file validation
+
+### 2. Transform
+- Removes null values
+- Standardizes column names
+- Converts data types (e.g., order_date)
+- Creates derived column: `total_amount`
+
+### 3. Load
+- Loads processed data into `orders` table
+- Creates aggregated table `daily_sales`
+
+---
+
+## 📊 Output Tables
+
+### Orders Table
+Stores cleaned transactional data.
+
+### Daily Sales Table
+Aggregated data:
+- Total sales per day
+
+---
 
 ## 🚀 How to Run
-bash
+
+```bash
 pip install -r requirements.txt
 python main.py
